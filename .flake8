@@ -1,0 +1,6 @@
+[flake8]
+doctests = false
+exclude = .git,__pycache__,build/,cache_to_disk.egg-info
+max-line-length = 140
+select = C,E,F,W,B,B950
+extend-ignore = E203, E501

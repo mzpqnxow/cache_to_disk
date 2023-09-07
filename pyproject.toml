@@ -1,0 +1,88 @@
+[tool.black]
+line-length = 96
+target-version = ['py35', 'py36', 'py37', 'py38', 'py39', 'py38', 'py310', 'py311']
+include = 'cache_to_disk/'
+
+[tool.pycodestyle]
+ignore = 'E501,W605'
+max-line-length = 160
+
+[tool.pylint.format]
+max-line-length = 160
+
+[tool.pylint.main]
+jobs = 10
+source-root = "src"
+ignore = ["setup.py", ".git", "pyproject.toml", "README.md", "_version.py", "versioneer.py"]
+good-names = ["f", "t", "s", "i", "ix", "j", "k", "ex", "Run", "_", "rv", "ip", "m", "n", "df", "q", "nl", "cr", "np", "pd", "err", "pp", "fn", "fd", "na", "ts", "tz"]
+disable = ["consider-using-sys-exit", "too-many-arguments", "too-many-locals"]
+max-attributes = 15
+
+[tool.pylint.reports]
+output-format = 'colorized'
+
+[tool.pylint.messages_control]
+disable = [
+    "fixme",
+    "todo",
+    # Disable docstrings checks as we don't require excessive documentation.
+    "missing-docstring",
+    "no-member",
+    "unspecified-encoding",
+]
+
+[tool.mypy]
+ignore_missing_imports = true
+no_implicit_optional = true
+check_untyped_defs = true
+strict_equality = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+show_error_codes = true
+
+files = ["cache_to_disk"]
+
+namespace_packages = false
+explicit_package_bases = false
+follow_imports = "normal"
+follow_imports_for_stubs = false
+no_site_packages = false
+no_silence_site_packages = false
+# Platform configuration
+python_version = "3.9"
+platform = "linux-64"
+# Disallow dynamic typing
+disallow_any_unimported = false
+disallow_any_expr = false
+disallow_any_decorated = false
+disallow_any_explicit = false
+disallow_any_generics = false
+disallow_subclassing_any = false
+# Untyped definitions and calls
+disallow_untyped_calls = false
+disallow_untyped_defs = false
+disallow_incomplete_defs = false
+disallow_untyped_decorators = true
+# None and Optional handling
+strict_optional = true
+# Configuring warnings
+warn_no_return = true
+warn_return_any = false
+warn_unreachable = false # GH#27396
+# Suppressing errors
+# show_none_errors = true
+ignore_errors = false
+# Miscellaneous strictness flags
+allow_untyped_globals = false
+allow_redefinition = false
+local_partial_types = false
+implicit_reexport = true
+# Configuring error messages
+show_error_context = false
+show_column_numbers = false
+
+[[tool.mypy.overrides]]
+module = [
+    "*._version",
+]
+ignore_missing_imports = true
